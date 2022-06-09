@@ -1,0 +1,100 @@
+<!--
+  Copyright 2018 Oriol Brufau
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8" />
+  <style>
+    :root {
+      font: caption;
+      user-select: none;
+      cursor: default;
+      background: #ffffff;
+      color: #222426;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        background: #4a4a4f;
+        color: #f9f9fa;
+      }
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 10px;
+      /* Firefox uses the background color of the body in the popup arrow.
+       Inherit it from :root, otherwise transparent would default to white */
+      background-color: inherit;
+    }
+    h1 {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      font-size: 1rem;
+    }
+    h1::before {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      margin: -5px 10px 0 0;
+      width: 32px;
+      height: 32px;
+      background: url("icon.svg") 0 0 / 100% 100%;
+    }
+    dl {
+      margin: 0;
+    }
+    dl.root {
+      display: grid;
+      grid-template-columns: repeat(2, max-content);
+      align-items: baseline;
+    }
+    dl.root > dt {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .group + dd, .group + dd > dl {
+      display: contents;
+    }
+    dt {
+      grid-column: 1;
+    }
+    dt.group {
+      grid-column: 1 / -1;
+    }
+    dd:not(.group + dd) {
+      font-variant-numeric: tabular-nums;
+      margin-inline-start: 5px;
+      justify-self: end;
+    }
+  </style>
+  <h1>Toolbar Note</h1>
+  <dl class="root">
+    <dt class="group">Tabs</dt>
+    <dd>
+      <dl>
+        <dt>This window:</dt>
+        <dd id="this-window"></dd>
+        <dt>All windows:</dt>
+        <!-- <dd id="all-windows"></dd> -->
+        <dd>855 1451 1722 1836</dd>
+      </dl>
+    </dd>
+    <dt>Windows:</dt>
+    <dd id="num-windows"></dd>
+  </dl>
+  <script src="popup.js"></script>
+</html>
