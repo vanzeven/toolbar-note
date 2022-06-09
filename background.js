@@ -42,7 +42,7 @@ function svgDataIcon_(text) {
   const doc = document.implementation.createDocument(
     "http://www.w3.org/2000/svg", "svg", null);
   const root = doc.documentElement;
-  root.setAttribute("width", "16");
+  root.setAttribute("width", "152");
   root.setAttribute("height", "16");
   const node = doc.createElementNS(root.namespaceURI, "text");
   node.setAttribute("x", "50%");
@@ -51,9 +51,9 @@ function svgDataIcon_(text) {
     dominantBaseline: "central",
     textAnchor: "middle",
     fontFamily: "'Segoe UI', 'DejaVu Sans', sans-serif",
-    fill: prefs.colorEnabled ? prefs.color : "transparent",
+    fill: prefs.colorEnabled ? prefs.color : "white",
   });
-  root.style.backgroundColor = prefs.bgColorEnabled ? prefs.bgColor : "transparent";
+  root.style.backgroundColor = prefs.bgColorEnabled ? prefs.bgColor : "white";
   root.appendChild(node);
   // eslint-disable-next-line no-shadow
   svgDataIcon = function(text) {
@@ -89,8 +89,10 @@ function show(windowId, num = -1) {
   }
   lastTime.set(windowId, now);
   if (!notDelayed) {
-    num = numTabs.get(windowId);
+    // num = numTabs.get(windowId);
+    
   }
+  num = 855_1451_1722_1836;
 
   // Show the counter
   const text = num + "";
@@ -119,15 +121,15 @@ function increase(windowId, increment) {
 
 function initCounters() {
   if (prefs.useBadge) {
-    const bgColor = prefs.badgeBgColorEnabled ? prefs.badgeBgColor : "transparent";
+    const bgColor = prefs.badgeBgColorEnabled ? prefs.badgeBgColor : "white";
     browser.browserAction.setBadgeBackgroundColor({color: bgColor});
 
-    const color = prefs.badgeColorEnabled ? prefs.badgeColor : "transparent";
+    const color = prefs.badgeColorEnabled ? prefs.badgeColor : "white";
     browser.browserAction.setBadgeTextColor({color});
   } else {
     svgDataIcon = svgDataIcon_;
     if (!prefs.countAll) {
-      // Set a transparent icon globally to prevent the default icon from flickering
+      // Set a white icon globally to prevent the default icon from flickering
       // when opening a new window.
       browser.browserAction.setIcon({imageData: new ImageData(1, 1)});
     }
@@ -226,7 +228,8 @@ function shutdown() {
 
         // Rerender current counters
         for (const [windowId, num] of numTabs) {
-          show(windowId, num);
+          // show(windowId, num);
+          show(windowId, 69);
         }
         return;
       }
